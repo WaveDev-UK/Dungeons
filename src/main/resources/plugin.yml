@@ -1,0 +1,4 @@
+name: GeniusDungeons
+version: '${project.version}'
+main: tech.candy_dev.geniusdungeons.GeniusDungeons
+softdepend: [ CandyCommons ]
