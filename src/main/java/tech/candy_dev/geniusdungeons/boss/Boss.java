@@ -1,10 +1,12 @@
 package tech.candy_dev.geniusdungeons.boss;
 
+import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import tech.candy_dev.candycommons.configuration.Serializable;
 import tech.candy_dev.candycommons.entity.CandyEntity;
 import tech.candy_dev.candycommons.file.yaml.YamlFile;
 import tech.candy_dev.candycommons.item.Item;
+import tech.candy_dev.geniusdungeons.configuration.Config;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,8 +20,21 @@ public class Boss extends Serializable {
     private List<Item> drops;
     private List<BossEntity> bossEntities;
 
+    private final List<Location> spawnLocations;
+
     public Boss(String id) {
         this.id = id;
+        this.spawnLocations = new ArrayList<>();
+    }
+
+    public void addSpawn(Location location) {
+        spawnLocations.add(location);
+        Config.BOSSES.getBossConfig().update();
+    }
+
+    public void removeSpawn(Location location) {
+        spawnLocations.remove(location);
+        Config.BOSSES.getBossConfig().update();
     }
 
     public Boss setXp(double xp) {
@@ -100,8 +115,16 @@ public class Boss extends Serializable {
                 items.add(item);
             }
         }
+        if (c.contains(path + ".spawns")) {
+            Map<String, Object> keys = new HashMap<>();
+            for (String key : c.getConfigurationSection(path + ".spawns").getKeys(false)) {
+                keys.put(key, c.get(key));
+            }
+            boss.spawnLocations.add(Location.deserialize(keys));
+        }
         boss.setDrops(boss.getDrops());
         return boss;
     }
+
 
 }

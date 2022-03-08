@@ -3,6 +3,7 @@ package tech.candy_dev.geniusdungeons.configuration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import tech.candy_dev.candycommons.configuration.Serializable;
 import tech.candy_dev.candycommons.file.yaml.YamlFile;
+import tech.candy_dev.geniusdungeons.GeniusDungeons;
 import tech.candy_dev.geniusdungeons.boss.Boss;
 
 import java.util.ArrayList;
@@ -43,5 +44,13 @@ public class BossConfig extends Serializable {
         }
         return new BossConfig(bosses);
     }
+
+    public void update() {
+        bosses.clear();
+        bosses.addAll(GeniusDungeons.getInstance().getBossManager().getBosses());
+        Config.BOSSES.setValue(this);
+        Config.BOSSES.saveValue(GeniusDungeons.getInstance().getFile("config"));
+    }
+
 
 }
