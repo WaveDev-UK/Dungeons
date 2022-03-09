@@ -6,33 +6,39 @@ import tech.candy_dev.candycommons.configuration.Serializable;
 import tech.candy_dev.candycommons.entity.CandyEntity;
 import tech.candy_dev.candycommons.file.yaml.YamlFile;
 import tech.candy_dev.candycommons.item.Item;
+import tech.candy_dev.candycommons.util.WeightedChooser;
 import tech.candy_dev.geniusdungeons.configuration.Config;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Boss extends Serializable {
 
     private final String id;
     private double xp;
-    private List<Item> drops;
+    private double money;
+    private List<BossDrop> drops;
     private List<BossEntity> bossEntities;
+    private final WeightedChooser<BossDrop> chooser;
 
-    private final List<Location> spawnLocations;
+    private final Queue<Location> spawnLocations;
+
+    private final List<Location> spawnLocationList;
 
     public Boss(String id) {
         this.id = id;
-        this.spawnLocations = new ArrayList<>();
+        this.spawnLocations = new PriorityQueue<>();
+        this.spawnLocationList = new ArrayList<>();
+        this.chooser = new WeightedChooser<>();
     }
 
     public void addSpawn(Location location) {
+        spawnLocationList.add(location);
         spawnLocations.add(location);
         Config.BOSSES.getBossConfig().update();
     }
 
     public void removeSpawn(Location location) {
+        spawnLocationList.remove(location);
         spawnLocations.remove(location);
         Config.BOSSES.getBossConfig().update();
     }
@@ -47,8 +53,16 @@ public class Boss extends Serializable {
         return this;
     }
 
-    public Boss setDrops(List<Item> drops) {
+    public Boss setDrops(List<BossDrop> drops) {
         this.drops = drops;
+        for (BossDrop bossDrop : drops) {
+            chooser.insertElement(bossDrop, bossDrop.getWeight());
+        }
+        return this;
+    }
+
+    public Boss setMoney(double money) {
+        this.money = money;
         return this;
     }
 
@@ -60,12 +74,21 @@ public class Boss extends Serializable {
         return xp;
     }
 
+    public Queue<Location> getSpawnLocations() {
+        return spawnLocations;
+    }
+
+    public Location getNextLocation() {
+        Location location = spawnLocations.poll();
+        spawnLocations.add(location);
+        return location;
+    }
 
     public List<BossEntity> getBossEntities() {
         return bossEntities;
     }
 
-    public List<Item> getDrops() {
+    public List<BossDrop> getDrops() {
         return drops;
     }
 
@@ -74,6 +97,7 @@ public class Boss extends Serializable {
         Map<String, Object> map = new HashMap<>();
         map.put("id", id);
         map.put("xp", xp);
+        map.put("money", money);
 
         for (int i = 0; i < bossEntities.size(); i++) {
             BossEntity candyEntity = bossEntities.get(i);
@@ -85,14 +109,26 @@ public class Boss extends Serializable {
 
         if (drops != null) {
             for (int i = 0; i < drops.size(); i++) {
-                Item item = drops.get(i);
-                Map<String, Object> itemSerialized = item.serialize();
+                BossDrop bossDrop = drops.get(i);
+                Map<String, Object> itemSerialized = bossDrop.serialize();
                 for (String key : itemSerialized.keySet()) {
                     map.put("drops." + i + "." + key, itemSerialized.get(key));
                 }
             }
 
         }
+
+        if (!spawnLocationList.isEmpty()) {
+            int i = 1;
+            for (Location location : spawnLocationList) {
+                Map<String, Object> locationSerialized = location.serialize();
+                for (String key : locationSerialized.keySet()) {
+                    map.put("spawns." + i + "." + key, locationSerialized.get(key));
+                }
+                i++;
+            }
+        }
+
         return map;
     }
 
@@ -107,12 +143,12 @@ public class Boss extends Serializable {
             candyEntities.add(candyEntity);
         }
         boss.setBossEntities(candyEntities);
-        List<Item> items = new ArrayList<>();
+        List<BossDrop> items = new ArrayList<>();
         if (c.contains(path + ".drops")) {
             for (String key : c.getConfigurationSection(path + ".drops").getKeys(false)) {
                 String itemPath = path + ".drops." + key;
-                Item item = Item.deserialize(yamlFile, itemPath);
-                items.add(item);
+                BossDrop bossDrop = BossDrop.deserialize(yamlFile, itemPath);
+                items.add(bossDrop);
             }
         }
         if (c.contains(path + ".spawns")) {
@@ -121,10 +157,34 @@ public class Boss extends Serializable {
                 keys.put(key, c.get(key));
             }
             boss.spawnLocations.add(Location.deserialize(keys));
+            boss.spawnLocationList.add(Location.deserialize(keys));
         }
-        boss.setDrops(boss.getDrops());
+        if (c.contains(path + ".money")) {
+            boss.setMoney(c.getDouble(path + ".money"));
+        }
+        boss.setDrops(items);
         return boss;
     }
 
 
+    public double getMoney() {
+        return money;
+    }
+
+    public List<Item> getRandomDrops() {
+        if (Config.DROPS_PER_KILL.getInt() < 1) {
+            return null;
+        }
+
+        List<Item> items = new ArrayList<>();
+        for (int i = 1; i <= Config.DROPS_PER_KILL.getInt(); i++) {
+            items.add(chooser.getRandomElement().getItem());
+        }
+
+        return items;
+    }
+
+    public List<Location> getSpawnLocationList() {
+        return spawnLocationList;
+    }
 }

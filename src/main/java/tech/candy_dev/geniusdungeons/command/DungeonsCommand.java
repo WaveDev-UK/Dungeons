@@ -18,7 +18,7 @@ public class DungeonsCommand extends CandyCommand {
     public void setup() {
         setPermission("geniusdungeons.dungeons");
         setDescription("Dungeons Command");
-        addSubCommands(new AddSpawnCommand(), new ReloadCommand());
+        addSubCommands(new AddSpawnCommand(), new GiveXPCommand(), new ReloadCommand(), new RemoveSpawnCommand(), new SetLevelCommand(), new ToggleMessageCommand());
     }
 
     @Override

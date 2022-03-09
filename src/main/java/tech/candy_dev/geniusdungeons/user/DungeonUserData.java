@@ -8,6 +8,8 @@ public class DungeonUserData extends UserData {
 
     private double exp = 0;
 
+    private boolean receivingMessages = true;
+
     public DungeonUserData(UUID id){
         super(id);
     }
@@ -18,5 +20,13 @@ public class DungeonUserData extends UserData {
 
     public void setExp(double exp) {
         this.exp = exp;
+    }
+
+    public boolean isReceivingMessages() {
+        return receivingMessages;
+    }
+
+    public void setReceivingMessages(boolean receivingMessages) {
+        this.receivingMessages = receivingMessages;
     }
 }

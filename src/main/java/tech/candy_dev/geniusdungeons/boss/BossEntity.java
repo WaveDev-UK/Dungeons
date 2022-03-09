@@ -16,10 +16,12 @@ public class BossEntity extends Serializable {
 
     private int amount;
     private CandyEntity candyEntity;
+    private double xp;
 
-    public BossEntity(CandyEntity candyEntity, int amount) {
+    public BossEntity(CandyEntity candyEntity, int amount, double xp) {
         this.candyEntity = candyEntity;
         this.amount = amount;
+        this.xp = xp;
     }
 
     public int getAmount() {
@@ -28,6 +30,10 @@ public class BossEntity extends Serializable {
 
     public CandyEntity getCandyEntity() {
         return candyEntity;
+    }
+
+    public double getXp() {
+        return xp;
     }
 
     @Override
@@ -43,11 +49,15 @@ public class BossEntity extends Serializable {
 
         int amount = yamlFile.getConfig().getInt(path + ".amount");
 
-        return new BossEntity(candyEntity, amount);
+        double xp = yamlFile.getConfig().getDouble(path + ".xp");
+
+        return new BossEntity(candyEntity, amount, xp);
     }
 
     public void spawn(Location location, Boss boss) {
         Entity entity = candyEntity.spawn(location);
+        NBTEntity nbtEntity = new NBTEntity(entity);
+        nbtEntity.setDouble("xp", xp);
         GeniusDungeons.getInstance().getBossManager().addActiveBoss(boss, entity);
     }
 

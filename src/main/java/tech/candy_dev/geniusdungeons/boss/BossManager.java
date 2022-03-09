@@ -1,7 +1,9 @@
 package tech.candy_dev.geniusdungeons.boss;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
+import tech.candy_dev.geniusdungeons.GeniusDungeons;
 import tech.candy_dev.geniusdungeons.configuration.Config;
 
 import java.util.*;
@@ -16,6 +18,7 @@ public class BossManager {
         this.bossMap = new HashMap<>();
         this.activeBosses = new HashMap<>();
         loadBosses();
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(GeniusDungeons.getInstance(), this::runBossSpawn, Config.SPAWN_INTERVAL.getInt(), Config.SPAWN_INTERVAL.getInt());
     }
 
     private void loadBosses() {
@@ -53,9 +56,62 @@ public class BossManager {
         activeBosses.put(boss, activeBoss);
     }
 
+    public void clearActiveBoss(Boss boss) {
+        if (getActiveBosses(boss) == null) {
+            return;
+        }
+
+        for (Entity entity : getActiveBosses(boss)) {
+            entity.remove();
+        }
+
+        activeBosses.put(boss, new ArrayList<>());
+    }
+
     public Collection<Boss> getBosses() {
         return bossMap.values();
     }
 
+    public Boss getBoss(Entity entity) {
+        for (Boss boss : getBosses()) {
+            List<Entity> active = getActiveBosses(boss);
+            if (active == null || active.isEmpty()) {
+                continue;
+            }
+
+            if (active.contains(entity)) {
+                return boss;
+            }
+        }
+        return null;
+    }
+
+    public void runBossSpawn() {
+        for (Boss boss : getBosses()) {
+            if (getActiveBosses(boss) != null && !getActiveBosses(boss).isEmpty()) {
+                continue;
+            }
+
+            if (boss.getSpawnLocations().isEmpty()) {
+                continue;
+            }
+
+            for (BossEntity bossEntity : boss.getBossEntities()) {
+                if (bossEntity.getAmount() < 1) {
+                    continue;
+                }
+                for (int i = 1; i <= bossEntity.getAmount(); i++) {
+                    bossEntity.spawn(boss.getNextLocation(), boss);
+                }
+            }
+        }
+    }
+
+    public void runForceSpawn() {
+        for (Boss boss : getBosses()) {
+            clearActiveBoss(boss);
+        }
+        runBossSpawn();
+    }
 
 }

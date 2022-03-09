@@ -3,12 +3,14 @@ package tech.candy_dev.geniusdungeons.configuration;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.potion.PotionEffectType;
 import tech.candy_dev.candycommons.configuration.Configuration;
 import tech.candy_dev.candycommons.entity.CandyEntity;
 import tech.candy_dev.candycommons.item.Item;
 import tech.candy_dev.candycommons.util.Pair;
 import tech.candy_dev.geniusdungeons.boss.Boss;
+import tech.candy_dev.geniusdungeons.boss.BossDrop;
 import tech.candy_dev.geniusdungeons.boss.BossEntity;
 
 import java.util.Arrays;
@@ -16,16 +18,27 @@ import java.util.Arrays;
 @SuppressWarnings("unchecked")
 public enum Config implements Configuration {
 
+    DROPS_PER_KILL("drops-per-kill", 1),
+    SPAWN_INTERVAL("spawn-interval", 300),
     BOSSES("bosses",
         new BossConfig(
             Arrays.asList(
                 new Boss("ZombiePack")
+                    .setDrops(Arrays.asList(
+                        new BossDrop(
+                            new Item()
+                                .setMaterial(Material.GOLD_NUGGET)
+                                .setName("&eTest Drop")
+                                .setEnchantments(new Pair<>(Enchantment.ARROW_INFINITE, 1))
+                                .setItemFlags(ItemFlag.HIDE_ENCHANTS), 100
+                        )
+                    ))
                     .setBossEntities(Arrays.asList(
                         new BossEntity(
                             new CandyEntity(EntityType.ZOMBIE)
                                 .setBaby(false)
                                 .setHealth(50)
-                                .setName("&cZombiePack"), 4),
+                                .setName("&cZombiePack"), 4, 5),
                         new BossEntity(
                             new CandyEntity(EntityType.ZOMBIE)
                                 .setName("&c&lZombie King")
@@ -41,7 +54,7 @@ public enum Config implements Configuration {
                                         .setEnchantments(
                                             new Pair<>(Enchantment.DAMAGE_ALL, 5)
                                         ))
-                                ), 4)))
+                                ), 4, 10)))
                     .setXp(5),
                 new Boss("ZombieOverlord")
                     .setBossEntities(Arrays.asList(
@@ -69,11 +82,12 @@ public enum Config implements Configuration {
                                 .setPotionEffects(
                                     new Pair<>(PotionEffectType.DAMAGE_RESISTANCE, 2),
                                     new Pair<>(PotionEffectType.INCREASE_DAMAGE, 1)
-                                ), 4
+                                ), 4, 20
                         )
                     ))
             )
-        ));
+        )),
+    XP_PER_LEVEL("xp-per-level", 100D);
 
     private final String path;
     private Object value;

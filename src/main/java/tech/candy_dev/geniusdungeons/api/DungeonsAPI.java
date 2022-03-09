@@ -3,6 +3,7 @@ package tech.candy_dev.geniusdungeons.api;
 import org.bukkit.entity.Player;
 import tech.candy_dev.candycommons.user.User;
 import tech.candy_dev.candycommons.util.Util;
+import tech.candy_dev.geniusdungeons.configuration.Config;
 import tech.candy_dev.geniusdungeons.user.DungeonUserData;
 
 public class DungeonsAPI {
@@ -36,4 +37,19 @@ public class DungeonsAPI {
     public static DungeonsAPI getInstance() {
         return instance;
     }
+
+    public double getLevel(User user) {
+        DungeonUserData dungeonUserData = user.getUserData(DungeonUserData.class);
+        double xp = dungeonUserData.getExp();
+        double remainder = xp % Config.XP_PER_LEVEL.getDouble();
+        xp = xp - remainder;
+        return xp / Config.XP_PER_LEVEL.getDouble();
+    }
+
+    public void setLevel(User user, double level){
+        double xp = level*Config.XP_PER_LEVEL.getDouble();
+        DungeonUserData dungeonUserData = user.getUserData(DungeonUserData.class);
+        dungeonUserData.setExp(xp);
+    }
+
 }
