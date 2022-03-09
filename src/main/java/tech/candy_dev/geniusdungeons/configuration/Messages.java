@@ -14,7 +14,11 @@ public enum Messages implements Configuration, Message {
         "&8» &b{commands}")),
     RELOAD_STARTED("reload.started", "{prefix}Beginning to reload GeniusDungeons..."),
     RELOAD_COMPLETED("reload.completed", "{prefix}Reload completed! Time taken: {time}ms."),
-    BOSS_NOT_FOUND("boss.not-found", "{prefix}Boss &9{boss} &3not found!");
+    BOSS_NOT_FOUND("boss.not-found", "{prefix}Boss &9{boss} &3not found!"),
+    BOSS_SPAWN_ADDED("boss.spawn-added", Arrays.asList(
+            "{prefix}Spawn added to Boss: {boss}!",
+            "&bLocation: {location}"
+    ));
 
     private final String path;
     private Object value;

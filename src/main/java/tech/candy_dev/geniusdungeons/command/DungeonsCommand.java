@@ -5,8 +5,7 @@ import tech.candy_dev.candycommons.command.CommandContext;
 import tech.candy_dev.candycommons.command.SubCommand;
 import tech.candy_dev.candycommons.message.Placeholder;
 import tech.candy_dev.candycommons.util.Util;
-import tech.candy_dev.geniusdungeons.command.subcommand.ReloadCommand;
-import tech.candy_dev.geniusdungeons.command.subcommand.SpawnCommand;
+import tech.candy_dev.geniusdungeons.command.subcommand.*;
 import tech.candy_dev.geniusdungeons.configuration.Messages;
 
 public class DungeonsCommand extends CandyCommand {
@@ -19,7 +18,7 @@ public class DungeonsCommand extends CandyCommand {
     public void setup() {
         setPermission("geniusdungeons.dungeons");
         setDescription("Dungeons Command");
-        addSubCommands(new ReloadCommand(), new SpawnCommand());
+        addSubCommands(new AddSpawnCommand(), new ReloadCommand());
     }
 
     @Override
