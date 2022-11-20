@@ -1,10 +1,10 @@
-package tech.candy_dev.geniusdungeons.configuration;
+package dev.wave.geniusdungeons.configuration;
 
+import dev.wave.geniusdungeons.GeniusDungeons;
 import org.bukkit.configuration.file.YamlConfiguration;
 import tech.candy_dev.candycommons.configuration.Serializable;
 import tech.candy_dev.candycommons.file.yaml.YamlFile;
-import tech.candy_dev.geniusdungeons.GeniusDungeons;
-import tech.candy_dev.geniusdungeons.boss.Boss;
+import dev.wave.geniusdungeons.boss.Boss;
 
 import java.util.ArrayList;
 import java.util.HashMap;

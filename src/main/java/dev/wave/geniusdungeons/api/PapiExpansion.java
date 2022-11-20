@@ -1,8 +1,7 @@
-package tech.candy_dev.geniusdungeons.api;
+package dev.wave.geniusdungeons.api;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 import tech.candy_dev.candycommons.user.User;
 import tech.candy_dev.candycommons.util.Util;
 

@@ -1,21 +1,19 @@
-package tech.candy_dev.geniusdungeons.listener;
+package dev.wave.geniusdungeons.listener;
 
 import de.tr7zw.changeme.nbtapi.NBTEntity;
+import dev.wave.geniusdungeons.GeniusDungeons;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import tech.candy_dev.candycommons.item.Item;
 import tech.candy_dev.candycommons.message.Placeholder;
 import tech.candy_dev.candycommons.user.User;
 import tech.candy_dev.candycommons.util.Util;
-import tech.candy_dev.geniusdungeons.GeniusDungeons;
-import tech.candy_dev.geniusdungeons.api.DungeonsAPI;
-import tech.candy_dev.geniusdungeons.boss.Boss;
-import tech.candy_dev.geniusdungeons.configuration.Messages;
-import tech.candy_dev.geniusdungeons.user.DungeonUserData;
+import dev.wave.geniusdungeons.boss.Boss;
+import dev.wave.geniusdungeons.configuration.Messages;
+import dev.wave.geniusdungeons.user.DungeonUserData;
 
 import java.util.List;
 

@@ -1,16 +1,14 @@
-package tech.candy_dev.geniusdungeons.command.subcommand;
+package dev.wave.geniusdungeons.command.subcommand;
 
 import tech.candy_dev.candycommons.command.CommandContext;
 import tech.candy_dev.candycommons.command.SubCommand;
 import tech.candy_dev.candycommons.message.Placeholder;
 import tech.candy_dev.candycommons.user.User;
 import tech.candy_dev.candycommons.util.Util;
-import tech.candy_dev.geniusdungeons.GeniusDungeons;
-import tech.candy_dev.geniusdungeons.configuration.Messages;
-import tech.candy_dev.geniusdungeons.user.DungeonUserData;
+import dev.wave.geniusdungeons.configuration.Messages;
+import dev.wave.geniusdungeons.user.DungeonUserData;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class ToggleMessageCommand extends SubCommand {
     public ToggleMessageCommand() {

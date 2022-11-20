@@ -1,5 +1,6 @@
-package tech.candy_dev.geniusdungeons.configuration;
+package dev.wave.geniusdungeons.configuration;
 
+import dev.wave.geniusdungeons.boss.BossDrop;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
@@ -9,9 +10,8 @@ import tech.candy_dev.candycommons.configuration.Configuration;
 import tech.candy_dev.candycommons.entity.CandyEntity;
 import tech.candy_dev.candycommons.item.Item;
 import tech.candy_dev.candycommons.util.Pair;
-import tech.candy_dev.geniusdungeons.boss.Boss;
-import tech.candy_dev.geniusdungeons.boss.BossDrop;
-import tech.candy_dev.geniusdungeons.boss.BossEntity;
+import dev.wave.geniusdungeons.boss.Boss;
+import dev.wave.geniusdungeons.boss.BossEntity;
 
 import java.util.Arrays;
 

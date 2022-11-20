@@ -1,4 +1,4 @@
-package tech.candy_dev.geniusdungeons.configuration;
+package dev.wave.geniusdungeons.configuration;
 
 import tech.candy_dev.candycommons.configuration.Configuration;
 import tech.candy_dev.candycommons.configuration.Message;

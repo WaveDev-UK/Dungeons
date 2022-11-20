@@ -1,4 +1,4 @@
-package tech.candy_dev.geniusdungeons;
+package dev.wave.geniusdungeons;
 
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -7,16 +7,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 import tech.candy_dev.candycommons.CandyCommons;
 import tech.candy_dev.candycommons.configuration.Configuration;
 import tech.candy_dev.candycommons.file.yaml.YamlFile;
-import tech.candy_dev.geniusdungeons.api.DungeonsAPI;
-import tech.candy_dev.geniusdungeons.api.PapiExpansion;
-import tech.candy_dev.geniusdungeons.boss.Boss;
-import tech.candy_dev.geniusdungeons.boss.BossDrop;
-import tech.candy_dev.geniusdungeons.boss.BossEntity;
-import tech.candy_dev.geniusdungeons.boss.BossManager;
-import tech.candy_dev.geniusdungeons.command.DungeonsCommand;
-import tech.candy_dev.geniusdungeons.configuration.BossConfig;
-import tech.candy_dev.geniusdungeons.configuration.Config;
-import tech.candy_dev.geniusdungeons.configuration.Messages;
+import dev.wave.geniusdungeons.api.DungeonsAPI;
+import dev.wave.geniusdungeons.api.PapiExpansion;
+import dev.wave.geniusdungeons.boss.Boss;
+import dev.wave.geniusdungeons.boss.BossDrop;
+import dev.wave.geniusdungeons.boss.BossEntity;
+import dev.wave.geniusdungeons.boss.BossManager;
+import dev.wave.geniusdungeons.command.DungeonsCommand;
+import dev.wave.geniusdungeons.configuration.BossConfig;
+import dev.wave.geniusdungeons.configuration.Config;
+import dev.wave.geniusdungeons.configuration.Messages;
 
 import java.util.Arrays;
 import java.util.HashMap;

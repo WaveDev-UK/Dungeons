@@ -1,4 +1,4 @@
-package tech.candy_dev.geniusdungeons.user;
+package dev.wave.geniusdungeons.user;
 
 import tech.candy_dev.candycommons.user.data.UserData;
 

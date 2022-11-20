@@ -1,10 +1,9 @@
-package tech.candy_dev.geniusdungeons.boss;
+package dev.wave.geniusdungeons.boss;
 
+import dev.wave.geniusdungeons.GeniusDungeons;
+import dev.wave.geniusdungeons.configuration.Config;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.entity.Entity;
-import tech.candy_dev.geniusdungeons.GeniusDungeons;
-import tech.candy_dev.geniusdungeons.configuration.Config;
 
 import java.util.*;
 

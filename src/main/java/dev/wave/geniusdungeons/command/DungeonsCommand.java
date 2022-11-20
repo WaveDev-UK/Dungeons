@@ -1,12 +1,13 @@
-package tech.candy_dev.geniusdungeons.command;
+package dev.wave.geniusdungeons.command;
 
+import dev.wave.geniusdungeons.command.subcommand.*;
+import dev.wave.geniusdungeons.configuration.Messages;
 import tech.candy_dev.candycommons.command.CandyCommand;
 import tech.candy_dev.candycommons.command.CommandContext;
 import tech.candy_dev.candycommons.command.SubCommand;
 import tech.candy_dev.candycommons.message.Placeholder;
 import tech.candy_dev.candycommons.util.Util;
 import tech.candy_dev.geniusdungeons.command.subcommand.*;
-import tech.candy_dev.geniusdungeons.configuration.Messages;
 
 public class DungeonsCommand extends CandyCommand {
 

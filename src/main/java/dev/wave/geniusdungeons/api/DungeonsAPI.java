@@ -1,10 +1,10 @@
-package tech.candy_dev.geniusdungeons.api;
+package dev.wave.geniusdungeons.api;
 
+import dev.wave.geniusdungeons.configuration.Config;
+import dev.wave.geniusdungeons.user.DungeonUserData;
 import org.bukkit.entity.Player;
 import tech.candy_dev.candycommons.user.User;
 import tech.candy_dev.candycommons.util.Util;
-import tech.candy_dev.geniusdungeons.configuration.Config;
-import tech.candy_dev.geniusdungeons.user.DungeonUserData;
 
 public class DungeonsAPI {
 

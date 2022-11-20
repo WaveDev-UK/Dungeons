@@ -1,15 +1,13 @@
-package tech.candy_dev.geniusdungeons.boss;
+package dev.wave.geniusdungeons.boss;
 
 import de.tr7zw.changeme.nbtapi.NBTEntity;
-import de.tr7zw.changeme.nbtapi.NBTItem;
+import dev.wave.geniusdungeons.GeniusDungeons;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import tech.candy_dev.candycommons.configuration.Serializable;
 import tech.candy_dev.candycommons.entity.CandyEntity;
 import tech.candy_dev.candycommons.file.yaml.YamlFile;
-import tech.candy_dev.geniusdungeons.GeniusDungeons;
 
-import java.lang.reflect.Field;
 import java.util.Map;
 
 public class BossEntity extends Serializable {

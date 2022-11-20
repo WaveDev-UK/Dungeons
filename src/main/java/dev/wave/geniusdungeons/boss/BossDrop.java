@@ -1,4 +1,4 @@
-package tech.candy_dev.geniusdungeons.boss;
+package dev.wave.geniusdungeons.boss;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import tech.candy_dev.candycommons.configuration.Serializable;

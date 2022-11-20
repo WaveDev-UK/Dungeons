@@ -1,13 +1,12 @@
-package tech.candy_dev.geniusdungeons.boss;
+package dev.wave.geniusdungeons.boss;
 
+import dev.wave.geniusdungeons.configuration.Config;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.YamlConfiguration;
 import tech.candy_dev.candycommons.configuration.Serializable;
-import tech.candy_dev.candycommons.entity.CandyEntity;
 import tech.candy_dev.candycommons.file.yaml.YamlFile;
 import tech.candy_dev.candycommons.item.Item;
 import tech.candy_dev.candycommons.util.WeightedChooser;
-import tech.candy_dev.geniusdungeons.configuration.Config;
 
 import java.util.*;
 

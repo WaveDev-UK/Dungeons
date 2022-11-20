@@ -1,12 +1,11 @@
-package tech.candy_dev.geniusdungeons.command.subcommand;
+package dev.wave.geniusdungeons.command.subcommand;
 
+import dev.wave.geniusdungeons.GeniusDungeons;
 import tech.candy_dev.candycommons.command.CommandContext;
 import tech.candy_dev.candycommons.command.SubCommand;
-import tech.candy_dev.geniusdungeons.GeniusDungeons;
-import tech.candy_dev.geniusdungeons.configuration.Messages;
+import dev.wave.geniusdungeons.configuration.Messages;
 
 import java.util.Collections;
-import java.util.List;
 
 public class ForceSpawnCommand extends SubCommand {
     public ForceSpawnCommand() {

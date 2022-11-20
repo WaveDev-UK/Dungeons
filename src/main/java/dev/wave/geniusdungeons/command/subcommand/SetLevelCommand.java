@@ -1,4 +1,4 @@
-package tech.candy_dev.geniusdungeons.command.subcommand;
+package dev.wave.geniusdungeons.command.subcommand;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -8,12 +8,10 @@ import tech.candy_dev.candycommons.message.CommonMessage;
 import tech.candy_dev.candycommons.message.Placeholder;
 import tech.candy_dev.candycommons.user.User;
 import tech.candy_dev.candycommons.util.Util;
-import tech.candy_dev.geniusdungeons.api.DungeonsAPI;
-import tech.candy_dev.geniusdungeons.configuration.Messages;
-import tech.candy_dev.geniusdungeons.user.DungeonUserData;
+import dev.wave.geniusdungeons.api.DungeonsAPI;
+import dev.wave.geniusdungeons.configuration.Messages;
 
 import java.util.Collections;
-import java.util.List;
 
 public class SetLevelCommand extends SubCommand {
     public SetLevelCommand() {

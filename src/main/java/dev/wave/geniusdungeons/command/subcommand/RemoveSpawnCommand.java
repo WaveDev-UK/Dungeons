@@ -1,18 +1,17 @@
-package tech.candy_dev.geniusdungeons.command.subcommand;
+package dev.wave.geniusdungeons.command.subcommand;
 
+import dev.wave.geniusdungeons.GeniusDungeons;
 import org.bukkit.Location;
 import tech.candy_dev.candycommons.command.CommandContext;
 import tech.candy_dev.candycommons.command.SubCommand;
 import tech.candy_dev.candycommons.message.CommonMessage;
 import tech.candy_dev.candycommons.message.Placeholder;
 import tech.candy_dev.candycommons.util.Util;
-import tech.candy_dev.geniusdungeons.GeniusDungeons;
-import tech.candy_dev.geniusdungeons.boss.Boss;
-import tech.candy_dev.geniusdungeons.configuration.Messages;
+import dev.wave.geniusdungeons.boss.Boss;
+import dev.wave.geniusdungeons.configuration.Messages;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Queue;
 
 public class RemoveSpawnCommand extends SubCommand {
     public RemoveSpawnCommand() {
